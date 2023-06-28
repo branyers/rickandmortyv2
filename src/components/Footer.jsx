@@ -4,13 +4,13 @@ import github from '../assets/github.svg';
 import twitter from '../assets/twitter.svg';
 import heart from '../assets/heart.svg';
 
-const Footer = () => {
+const Footer = ({info}) => {
     return (
         <>
             <footer className="bg-footer_Color py-20">
                 <section className='flex flex-col'>
                     <ul className="flex justify-between md:justify-center lg:justify-center md:gap-10 text-white text-sm mb-3">
-                        <li>CHARACTERS: 826</li>
+                        <li>CHARACTERS: </li>
                         <li>LOCATIONS: 128</li>
                         <li>EPISODES: 51</li>
                     </ul>
