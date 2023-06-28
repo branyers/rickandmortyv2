@@ -20,7 +20,7 @@ const Main = () => {
 
             <section className="bg-slate-800 p-8 md:flex lg:flex md:flex-grow md:flex-wrap">
                 <div className='bg-slate-600 flex flex-col md:flex md:flex-row lg:flex-row rounded-md mb-10 md:mx-auto'>
-                    <img className='md:w-2/6 lg:md:w-2/6' src={branros} alt="" />
+                    <img className='md:w-2/6 lg:md:w-2/6' src="https://rickandmortyapi.com/api/character/avatar/31.jpeg" alt="" />
 
                     <div className='md:flex md:flex-col lg:flex md:px-2 lg:px-2 md:justify-evenly'>
                         <div className='flex flex-col gap-2  px-2 md:flex-col lg:flex-col mt-2'>
