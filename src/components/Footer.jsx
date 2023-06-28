@@ -1,4 +1,4 @@
-import Netlify from '../assets/Netlify.svg';
+import netly from '../assets/netly.svg';
 import Incident from '../assets/incident-icon.svg';
 import github from '../assets/github.svg';
 import twitter from '../assets/twitter.svg';
@@ -20,7 +20,7 @@ const Footer = () => {
                     </div>
 
                     <div className='flex justify-evenly items-center mb-7'>
-                        <img className='w-32' src={Netlify} alt="" />
+                        <img className='w-32' src={netly} alt="" />
                         <img className='w-10' src={Incident} alt="" />
                     </div>
 
