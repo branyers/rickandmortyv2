@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import magnifier from '../assets/magnifier.svg';
+import load from '../assets/loading.gif';
 import Footer from './Footer';
-import { getCharacter } from '../../services/getCharacter';
+import { useCharacter } from '../hooks/useCharacter';
+import { getRandomCharacter } from '../../services/getRandomCharacter';
 
-const Main = ({ data }) => {
-    const [search, setSearch] = useState("")
-    const [character, setCharacter] = useState("")
-
-    useEffect(() => {
-        if (!search) return;
-        getCharacter(search).then(response => {
-            setCharacter(response)
-        })
-    }, [search])
+const Main = ({onNewValue}) => {
+    const [search, setSearch] = useState(getRandomCharacter)
+    const {character, loading} = useCharacter({search})
 
     return (
         <main className='mt-16'>
@@ -30,7 +25,7 @@ const Main = ({ data }) => {
             </section>
 
             <section className="bg-slate-800 p-8 md:flex lg:flex md:flex-wrap flex-grow-0 gap-2">
-                {character && character.map(({ id, name, image, status, species, origin }) => {
+                { loading ? <img src={load}/> :character && character.map(({ id, name, image, status, species, origin }) => {
                     return <React.Fragment key={id}>
                             <div className='bg-slate-600 container md:flex md:gap-1 md:mx-auto md:w-4/12 rounded-md mb-5'>
                                 <img className='w-full md:w-1/3 object-cover' src={image} alt="" />

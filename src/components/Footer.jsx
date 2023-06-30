@@ -10,7 +10,7 @@ const Footer = ({info}) => {
             <footer className="bg-footer_Color py-20">
                 <section className='flex flex-col'>
                     <ul className="flex justify-between md:justify-center lg:justify-center md:gap-10 text-white text-sm mb-3">
-                        <li>CHARACTERS: </li>
+                        <li>CHARACTERS: 802</li>
                         <li>LOCATIONS: 128</li>
                         <li>EPISODES: 51</li>
                     </ul>

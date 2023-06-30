@@ -4,5 +4,3 @@ export const getCharacter = async (character) =>{
     const {results} = response
     return results.slice(0,6)
 }
-
-
