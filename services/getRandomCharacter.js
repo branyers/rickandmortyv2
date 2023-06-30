@@ -22,27 +22,6 @@ export const getRandomCharacter = () =>{
         "Pickle Rick",
         "Phoenixperson",
         "Dr. Wong",
-        "The Vindicators",
-        "The Citadel",
-        "Cromulons",
-        "Plumbuses",
-        "Fart",
-        "Tammy",
-        "Gearhead",
-        "Prince Nebulon",
-        "King Jellybean",
-        "Morty Jr.",
-        "Ants in my Eyes",
-        "Tinkles",
-        "Gwendolyn",
-        "Revolio Clockberg Jr.",
-        "The Council",
-        "Reverse Giraffe",
-        "Million Ants",
-        "Photography Raptor",
-        "Hemorrhage",
-        "Tricia",
-        "Snuffles"
       ];
     
     return characters[Math.floor(Math.random() * characters.length)].slice(0,6);
