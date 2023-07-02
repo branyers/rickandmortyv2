@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import magnifier from '../assets/magnifier.svg';
-import load from '../assets/loading.gif';
+import { Loading } from './Loading';
 import Footer from './Footer';
 import { useCharacter } from '../hooks/useCharacter';
 import { getRandomCharacter } from '../../services/getRandomCharacter';
 
-const Main = ({ onNewValue }) => {
+export const Main = () => {
     const [search, setSearch] = useState(getRandomCharacter)
-    const { character, loading } = useCharacter({ search })
+    const [short, setShort] = useState()
+    const { shortedCharacter, loading, getCharact} = useCharacter({search, short})
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        getCharact({ searching: search });
+    }
+
+    const handleCheckbox = () => {
+        setShort(!short)
+    }
 
     return (
         <main className='mt-16'>
@@ -15,24 +25,26 @@ const Main = ({ onNewValue }) => {
                 <h1 className='text-6xl font-bold'>The Rick and Morty API</h1>
             </section>
 
-            <section className='mx-auto mt-10 mb-16'>
-                <div className="flex justify-center items-center gap-2">
-                    <div className="w-1/2 border rounded-md">
-                        <input className='w-full py-1 px-2 rounded-md' type="text" onChange={((event) => { setSearch(event.target.value) })} />
-                    </div>
-                    <img className='w-5 h-5' src={magnifier} alt="" />
-                </div>
+            <section className='mx-auto mt-10 mb-16 flex items-center justify-center gap-2'>
+                    <form className="w-1/2 rounded-md flex items-center gap-2" onSubmit={handleSubmit}>
+                        <input className='w-full py-1 px-2 rounded-md border' type="text" onChange={((event) => { setSearch(event.target.value) })}/>
+                        <button type='submit'><img className='w-5 h-5' src={magnifier} alt=""/></button>
+                    </form>
+
+                    <input type="checkbox" onClick={handleCheckbox} name="Ordenar por nombre" />
+                    <label htmlFor="">Ordenar Por nombre</label>
             </section>
 
-            <section className="bg-slate-800 p-8 md:flex lg:flex md:flex-wrap flex-grow-0 gap-2">
+            <section className="bg-slate-800 p-8 md:flex lg:flex md:flex-wrap flex-grow-0 gap-2 justify-center">
+               
                 {
                     loading
                         ? (
-                            <img src={load} />
+                            <Loading/>
+                            
                         ) :
                         (
-
-                            character && character.map(({ id, name, image, status, species, origin }) => {
+                            shortedCharacter && shortedCharacter.map(({ id, name, image, status, species, origin, episode}) => {
                                 return <React.Fragment key={id}>
                                     <div className='bg-slate-600 container md:flex md:gap-1 md:mx-auto md:w-4/12 rounded-md mb-5'>
                                         <img className='w-full md:w-1/3 object-cover' src={image} alt="" />
@@ -47,8 +59,8 @@ const Main = ({ onNewValue }) => {
                                                     <p className='text-gray-400'>Last known location:</p>
                                                     <p className='text-white'>{origin.name}</p>
                                                     <div className='mt-5'>
-                                                        <p className='text-gray-400'>First seen in:</p>
-                                                        <p className='text-white'>Total Rickall</p>
+                                                        <p className='text-gray-400'>Episodes:</p>
+                                                        <p className='text-white'>{episode.length}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -69,4 +81,3 @@ const Main = ({ onNewValue }) => {
 }
 
 
-export default Main;
