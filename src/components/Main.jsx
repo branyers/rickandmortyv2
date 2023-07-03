@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import magnifier from '../assets/magnifier.svg';
 import { Loading } from './Loading';
 import Footer from './Footer';
 import { useCharacter } from '../hooks/useCharacter';
 import { getRandomCharacter } from '../../services/getRandomCharacter';
+import { Filters } from './Filters';
+import { TestComponent } from './TestComponent';
+import { useContext } from 'react';
+import { FiltersContext } from '../Context/FilterContext';
+import debounce from "just-debounce-it";
 
 export const Main = () => {
     const [search, setSearch] = useState(getRandomCharacter)
     const [short, setShort] = useState()
     const { shortedCharacter, loading, getCharact} = useCharacter({search, short})
+    const {filters} = useContext(FiltersContext)
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        getCharact({ searching: search });
+        getCharact({ searching: search, species: filters});
+    }
+
+    const debouncedGeCharacter = useCallback(
+        debounce(searching => {
+            getCharact({ searching: searching,species: filters})
+        }, 300)
+        , [getCharact]
+      )
+
+    const handleChange = (event) => {
+        const newSearch = event.target.value
+        setSearch(newSearch)
+        debouncedGeCharacter(newSearch)
     }
 
     const handleCheckbox = () => {
@@ -27,14 +46,15 @@ export const Main = () => {
 
             <section className='mx-auto mt-10 mb-16 flex items-center justify-center gap-2'>
                     <form className="w-1/2 rounded-md flex items-center gap-2" onSubmit={handleSubmit}>
-                        <input className='w-full py-1 px-2 rounded-md border' type="text" onChange={((event) => { setSearch(event.target.value) })}/>
+                        <input className='w-full py-1 px-2 rounded-md border' type="text" onChange={handleChange}/>
                         <button type='submit'><img className='w-5 h-5' src={magnifier} alt=""/></button>
                     </form>
 
                     <input type="checkbox" onClick={handleCheckbox} name="Ordenar por nombre" />
                     <label htmlFor="">Ordenar Por nombre</label>
+                    <Filters/>
             </section>
-
+                <TestComponent/>
             <section className="bg-slate-800 p-8 md:flex lg:flex md:flex-wrap flex-grow-0 gap-2 justify-center">
                
                 {
