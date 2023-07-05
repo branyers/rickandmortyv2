@@ -1,19 +1,8 @@
-import { useId, useEffect, useState, useContext } from "react"
 import { useFilters } from "../hooks/useFilter";
-import { FiltersContext } from "../Context/FilterContext";
 
 export const Filters = () => {
+    const { species,categoryFilterId,setFilters} = useFilters()
 
-    const categoryFilterId = useId()
-    const { species } = useFilters()
-
-    const { filters, setFilters } = useContext(FiltersContext)
-
-
-    useEffect(() => {
-        const selectElement = document.getElementById(categoryFilterId);
-        selectElement.value = filters;
-    }, [categoryFilterId, filters]);
 
     const handleChanges = (event) => {
         setFilters(event.target.value)
