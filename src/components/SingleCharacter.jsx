@@ -19,7 +19,7 @@ export const SingleCharacter = () => {
                         </div>
                         <div className='flex flex-col px-2 py-3 '>
                             <p className='text-gray-400'>Last known location:</p>
-                            <NavLink to={"/"}><p className='text-white hover:text-gray-200'>{data.origin.name}</p></NavLink>
+                            <NavLink to={`/residentinfo/${data.id}`}><p className='text-white hover:text-gray-200'>{data.origin.name}</p></NavLink>
                             <div className='mt-5'>
                                 <p className='text-gray-400'>Episodes:</p>
                                 <NavLink to={`/episodeinfo/${id}`}><p className='text-white'>All Episodes</p></NavLink>
