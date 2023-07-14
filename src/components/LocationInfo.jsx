@@ -1,14 +1,14 @@
 import React from "react"
-import { useLocationInfo } from "../hooks/useLocationInfo"
+import { useEpisodeCharacter } from "../hooks/useEpisodeCharacter"
 import { useParams } from "react-router-dom"
 export const LocationInfo = () => {
     const { id } = useParams()
-    const { resident } = useLocationInfo(id)
+    const { episodeResident } = useEpisodeCharacter(id)
 
     return (
         <section className="bg-slate-800 p-8 md:flex lg:flex md:flex-wrap flex-grow-0 gap-2 justify-center">
-            {
-                resident && resident.map(({ id, name, image, status, species, origin, episode }) => {
+            { 
+                episodeResident && episodeResident.map(({ id, name, image, status, species, origin, episode }) => {
                     return <React.Fragment key={id}>
                         <div className='bg-slate-600 container md:flex md:gap-1 md:mx-auto md:w-4/12 rounded-md mb-5'>
                             <img className='w-full md:w-1/3 object-cover' src={image} alt="" />
