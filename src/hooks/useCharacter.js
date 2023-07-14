@@ -19,6 +19,11 @@ export const useCharacter = ({ search, short }) => {
     }, [filters])
 
     const getCharact = useCallback(async ({ searching, species }) => {
+        // searching => lo que el usuario esta escribiendo actualmente
+        // previousSearch.current guarda una referencia de lo ultimo que se escribio
+        // Esto se hace para que una busqueda no consulte al servicio dos veces
+        // Ej: Si ya se busco el character Rick, y Rick se encuentra en previousSearch.current
+        // Lo que hace es que no ejecute el fetch y devuelve la anterior respuesta
         if (searching === previousSearch.current) return
         try {
 

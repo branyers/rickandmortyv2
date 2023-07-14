@@ -1,19 +1,26 @@
-import { useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
-import {Main} from './components/Main'
-
+import { Main } from './components/Main'
+import { Route, Routes } from 'react-router-dom'
+import { SingleCharacter } from './components/SingleCharacter'
+import { Locations } from './components/Locations'
+import { LocationInfo } from './components/LocationInfo'
+import { EpisodeInfo } from './components/EpisodeInfo'
 
 function App() {
-const [data, setData] = useState("")
 
-const onNewValue = (event) =>{
-  console.log(event.target.value)
-}
 
   return (
     <>
+
       <NavBar />
-     <Main/>
+
+      <Routes>
+        <Route path='/' element={<Main />}></Route>
+        <Route path='character/:id' element={<SingleCharacter />} />
+        <Route path='location/:id' element={<Locations/>}></Route>
+        <Route path='locationinfo/:id' element={<LocationInfo/>}></Route>
+        <Route path='episodeinfo/:id' element={<EpisodeInfo/>}></Route>
+      </Routes>
     </>
   )
 }

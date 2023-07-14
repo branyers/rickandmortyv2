@@ -1,11 +1,14 @@
-import { useContext } from "react"
-import { FiltersContext } from "../Context/FilterContext"
-
+import { useLocations } from "../hooks/useLocations"
 export const TestComponent = () => {
-    const { filters } = useContext(FiltersContext)
+    const {locations,data} = useLocations()
+
     return (
         <>
+            {locations && data && console.log(data)}
+
         </>
     )
 
 }
+
+

@@ -6,6 +6,7 @@ export const Filters = () => {
 
     const handleChanges = (event) => {
         setFilters(event.target.value)
+        
     }
 
     return (

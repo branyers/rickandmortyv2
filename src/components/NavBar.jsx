@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../assets/rickandmorty.svg';
 
 const NavBar = () => {
@@ -6,12 +7,12 @@ const NavBar = () => {
             <nav className='flex justify-between items-center'>
 
                 <section>
-                <img width={`40px`} height={`40px`}  src={logo} alt="" />
+                    <img width={`40px`} height={`40px`} src={logo} alt="" />
                 </section>
 
                 <section className='flex justify-center items-center'>
                     <ul className='flex items-center justify-center gap-3 font-bold'>
-                        <li>Home</li>
+                        <Link to={'/'}>Home</Link>
                         <li>About</li>
                     </ul>
                 </section>
